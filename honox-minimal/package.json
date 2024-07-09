@@ -1,0 +1,17 @@
+{
+  "name": "honox-minimal",
+  "type": "module",
+  "dependencies": { "hono": "^4.4.12", "honox": "^0.1.23", "vite": "^5.3.3" },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode client && vite build",
+    "preview": "wrangler pages dev",
+    "deploy": "$npm_execpath run build && wrangler pages deploy"
+  }
+}
