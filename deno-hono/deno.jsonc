@@ -2,5 +2,8 @@
   "tasks": {
     "dev": "deno run --watch main.ts",
     "run": "deno run --watch --allow-net main.ts"
+  },
+  "imports": {
+    "@hono/hono": "jsr:@hono/hono@^4.4.13"
   }
 }

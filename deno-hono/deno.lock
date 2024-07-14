@@ -1,5 +1,15 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@hono/hono@^4.4.13": "jsr:@hono/hono@4.4.13"
+    },
+    "jsr": {
+      "@hono/hono@4.4.13": {
+        "integrity": "bd8a736b7e77c6d285c186beb37526fcb0497f48b759d508e595464b5f2ffd5c"
+      }
+    }
+  },
   "redirects": {
     "https://deno.land/std/http/server.ts": "https://deno.land/std@0.223.0/http/server.ts"
   },
@@ -39,5 +49,10 @@
     "https://deno.land/x/hono@v4.2.7/utils/url.ts": "855169632c61d03703bd08cafb27664ba3fdb352892f01687d5cce8fd49e3cb1",
     "https://deno.land/x/hono@v4.2.7/validator/index.ts": "6c986e8b91dcf857ecc8164a506ae8eea8665792a4ff7215471df669c632ae7c",
     "https://deno.land/x/hono@v4.2.7/validator/validator.ts": "99618538b9b283d854656f7375169c0b5006c7198d64be1dfcd79fc6ea01628a"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@hono/hono@^4.4.13"
+    ]
   }
 }
