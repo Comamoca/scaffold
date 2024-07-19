@@ -1,0 +1,3 @@
+-cp src
+--run Main
+-cpp bin/cpp/main.cpp

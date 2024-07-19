@@ -1,0 +1,10 @@
+{
+  "name": "haxe-basic-cpp",
+  "url": "",
+  "license": "MIT",
+  "tags": [""],
+  "description": "A template project of Haxe on C++.",
+  "version": "0.0.1",
+  "contributors": [""],
+  "dependencies": {}
+}
