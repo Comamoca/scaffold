@@ -41,8 +41,7 @@
         # Specify source path. You must specify the file added with `git add`.
         src = ./.;
         # Write build commands. e.g. make, gcc, etc...
-        buildCommand = ''
-        '';
+        buildCommand = '''';
       };
 
       # When execute `nix run`, print "Hello World!".
@@ -51,11 +50,11 @@
         pname = "hello";
         version = "0.1.0";
         src = pkgs.writeShellScriptBin "hello" ''
-        echo Hello World!
+          echo Hello World!
         '';
 
         buildCommand = ''
-        install -D $src/bin/hello $out/bin/hello
+          install -D $src/bin/hello $out/bin/hello
         '';
       };
 

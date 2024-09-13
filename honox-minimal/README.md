@@ -9,7 +9,6 @@ Template of Honox minimal template.
 <br>
 <br>
 
-
 </div>
 
 <div align="center">
@@ -22,7 +21,8 @@ Template of Honox minimal template.
 bun i # or bun i --yarn
 bun run dev
 ```
-## ⬇️  Install
+
+## ⬇️ Install
 
 ```sh
 # using scaffox
@@ -32,11 +32,12 @@ scaffox https://github.com/comamoca/scaffold
 degit https://github.com/comamoca/scaffold/honox-minimal
 ```
 
-## ⛏️   Development
+## ⛏️ Development
 
 ```sh
 bun run dev
 ```
+
 ## 📜 License
 
 MIT

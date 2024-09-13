@@ -9,9 +9,7 @@ Raylib example in C with CMake.
 <br>
 <br>
 
-
 </div>
-
 
 <div align="center">
 

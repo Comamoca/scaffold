@@ -15,9 +15,7 @@ My offen use project templates.
 <br>
 <br>
 
-
 </div>
-
 
 <div align="center">
 
@@ -43,7 +41,7 @@ Notthing...
 
 ## 📜 License
 
-> [!CAUTION]
-> **If a license is specified in the included source code, that license will take precedence.**
+> [!CAUTION] **If a license is specified in the included source code, that
+> license will take precedence.**
 
 CC0
