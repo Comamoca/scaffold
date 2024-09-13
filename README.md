@@ -23,6 +23,9 @@ My offen use project templates.
 
 ## 🚀 How to use
 
+### 🦊 Use scaffox
+
+
 Please install [scaffox](https://github.com/comamoca/scaffox)
 
 ```sh
@@ -35,9 +38,24 @@ Then build scaffold.
 scaffox https://github.com/comamoca/scaffold
 ```
 
+### ❄ Use Nix
+
+If you have [Nix](https://nixos.org/), run below.
+
+`{template_name}` is a directory name.(e.g. `flake-basic`)
+```sh
+nix flake init -t github:Comamoca/scaffold#{template_name} 
+```
+
+Get `flake-basic` template.
+```sh
+nix flake init -t github:Comamoca/scaffold#flake-basic 
+```
+
+
 ## 📝 Todo
 
-Notthing...
+Nothing...
 
 ## 📜 License
 
