@@ -16,11 +16,6 @@
       treefmt-nix,
       flake-parts,
     }:
-    # let
-    #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    #   stdenv = pkgs.stdenv;
-    #   treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-    # in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ treefmt-nix.flakeModule ];
       systems = import inputs.systems;
