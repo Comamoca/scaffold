@@ -52,6 +52,10 @@
           path = ./odin-hello;
           description = "Minimal Odin project.";
         };
+        odin-hello = {
+          path = ./cl-nix;
+          description = "Common Lisp with Nix";
+        };
       };
     };
 }
