@@ -23,7 +23,7 @@ My offen use project templates.
 </div>
 
 > [!NOTE]
-> 一部のテンプレートは[Comamoca/starter](https://github.com/Comamoca/starter)リポジトリへと移動されました。
+> Some templates have been moved to the [Comamoca/starter](https://github.com/Comamoca/starter) repository.
 
 ## 🚀 How to use
 
