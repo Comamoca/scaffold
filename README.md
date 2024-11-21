@@ -8,6 +8,7 @@
 
 <img src="https://emoji2svg.deno.dev/api/🦊" alt="eyecatch" height="100">
 
+
 # scaffold
 
 My offen use project templates.
@@ -20,6 +21,9 @@ My offen use project templates.
 <div align="center">
 
 </div>
+
+> [!NOTE]
+> 一部のテンプレートは[Comamoca/starter](https://github.com/Comamoca/starter)リポジトリへと移動されました。
 
 ## 🚀 How to use
 
