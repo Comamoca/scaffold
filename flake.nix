@@ -1,61 +1,55 @@
 {
-  description = "A very basic flake";
+  description = "A basic flake to with flake-parts";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
   };
 
   outputs =
-    {
+    inputs@{
       self,
+      systems,
       nixpkgs,
       treefmt-nix,
+      flake-parts,
     }:
-    let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      stdenv = pkgs.stdenv;
-      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-    in
-    {
-      # Run treefmt. See `./treefmt.nix`.
-      formatter.x86_64-linux = treefmtEval.config.build.wrapper;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ treefmt-nix.flakeModule ];
+      systems = import inputs.systems;
 
-      templates = {
-
-        flake-basic = {
-          path = ./flake-basic;
-          description = "Nix flake basic template.";
-        };
-
-        c-cli = {
-          path = ./c-cli;
-          description = "Basic C project template.";
-        };
-        c-raylib-cmake = {
-          path = ./c-raylib-cmake;
-          description = "Raylib project build with cmake.";
-        };
-        deno-hono = {
-          path = ./deno-hono;
-          description = "Hono project with Deno.";
-        };
-        haxe-basic-cpp = {
-          path = ./haxe-basic-cpp;
-          description = "Haxe project with cpp target.";
-        };
-        honox-minimal = {
-          path = ./honox-minimal;
-          description = "Minimal HonoX project.";
-        };
-        odin-hello = {
-          path = ./odin-hello;
-          description = "Minimal Odin project.";
-        };
-        cl-nix = {
-          path = ./cl-nix;
-          description = "Common Lisp with Nix";
-        };
+      flake = {
+        templates = import ./template.nix;
       };
+
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
+        let
+          stdenv = pkgs.stdenv;
+        in
+        {
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs = {
+              deno.enable = true;
+              nixfmt.enable = true;
+            };
+
+            settings.formatter = { };
+          };
+
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              nil
+            ];
+          };
+        };
     };
 }
