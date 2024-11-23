@@ -6,6 +6,7 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
@@ -13,11 +14,14 @@
       self,
       systems,
       nixpkgs,
-      treefmt-nix,
       flake-parts,
+      ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ treefmt-nix.flakeModule ];
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        inputs.git-hooks-nix.flakeModule
+      ];
       systems = import inputs.systems;
 
       perSystem =
@@ -58,8 +62,16 @@
               install -D $src/bin/hello $out/bin/hello
             '';
           };
+
+          git-secrets' = pkgs.writeShellApplication {
+            name = "git-secrets";
+            runtimeInputs = [ pkgs.git-secrets ];
+            text = ''
+              git secrets --scan
+            '';
+          };
         in
-        rec {
+        {
           # When execute `nix fmt`, formatting your code.
           treefmt = {
             projectRootFile = "flake.nix";
@@ -68,6 +80,23 @@
             };
 
             settings.formatter = { };
+          };
+
+          pre-commit = {
+            check.enable = true;
+            settings = {
+              hooks = {
+                treefmt.enable = true;
+                ripsecrets.enable = true;
+                git-secrets = {
+                  enable = true;
+                  name = "git-secrets";
+                  entry = "${git-secrets'}/bin/git-secrets";
+                  language = "system";
+                  types = [ "text" ];
+                };
+              };
+            };
           };
 
           # When execute `nix develop`, you go in shell installed nil.
