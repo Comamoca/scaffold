@@ -1,10 +1,12 @@
 {
-
+  flake-devenv = {
+    path = ./flake-devenv;
+    description = "Nix flake with devenv template.";
+  };
   flake-basic = {
     path = ./flake-basic;
     description = "Nix flake basic template.";
   };
-
   c-cli = {
     path = ./c-cli;
     description = "Basic C project template.";
