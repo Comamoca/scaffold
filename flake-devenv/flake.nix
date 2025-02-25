@@ -102,20 +102,6 @@
             };
           };
 
-          # When execute `nix develop`, you go in shell installed nil.
-          # devenv.shells.default = {
-          #   packages = [ ];
-
-          #   languages.python.enable = true;
-          #   languages.python.version = "3.12.8";
-
-          #   tasks."myapp:hello" = {
-          #     exec = ''echo "Hello, world!"'';
-          #   };
-
-          #   enterShell = '''';
-          # };
-
           packages.default = hello;
         };
     };
