@@ -7,6 +7,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    devenv.url = "github:cachix/devenv";
   };
 
   outputs =
@@ -21,6 +22,7 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         inputs.git-hooks-nix.flakeModule
+        inputs.devenv.flakeModule
       ];
       systems = import inputs.systems;
 
@@ -100,10 +102,19 @@
           };
 
           # When execute `nix develop`, you go in shell installed nil.
-          devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              nil
-            ];
+          devenv.shells.default = {
+            packages = [ pkgs.nil ];
+
+            # Specify languages like this.
+            # There is a limit to the number of languages for which the version attribute can be specified.
+            # languages = {
+            #   php = {
+            #     enable = true;
+            #     version = "8.4";
+            #   };
+            # };
+
+            enterShell = '''';
           };
 
           packages.default = hello;
