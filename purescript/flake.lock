@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -15,6 +31,21 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "haskell-flake": {
+      "locked": {
+        "lastModified": 1749105244,
+        "narHash": "sha256-gV/B1PWOwpLjy2OCHMS/fJ8GItMRoflW/g3kXB8/skg=",
+        "owner": "srid",
+        "repo": "haskell-flake",
+        "rev": "af2ba40f23824556b12d1cdfdf392e263876d644",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "haskell-flake",
         "type": "github"
       }
     },
@@ -65,12 +96,57 @@
         "type": "github"
       }
     },
+    "purescript-overlay": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "slimlock": "slimlock"
+      },
+      "locked": {
+        "lastModified": 1749721661,
+        "narHash": "sha256-z0Wfm2ThrUilogAeewLf/0Oc2a/4ODrxrA+4NWAdoAQ=",
+        "owner": "thomashoneyman",
+        "repo": "purescript-overlay",
+        "rev": "c73f85b379dcb30f4f3f1bca152b19c880309d01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thomashoneyman",
+        "repo": "purescript-overlay",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "haskell-flake": "haskell-flake",
         "nixpkgs": "nixpkgs",
+        "purescript-overlay": "purescript-overlay",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"
+      }
+    },
+    "slimlock": {
+      "inputs": {
+        "nixpkgs": [
+          "purescript-overlay",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1688756706,
+        "narHash": "sha256-xzkkMv3neJJJ89zo3o2ojp7nFeaZc2G0fYwNXNJRFlo=",
+        "owner": "thomashoneyman",
+        "repo": "slimlock",
+        "rev": "cf72723f59e2340d24881fd7bf61cb113b4c407c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thomashoneyman",
+        "repo": "slimlock",
+        "type": "github"
       }
     },
     "systems": {
