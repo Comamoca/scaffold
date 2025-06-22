@@ -11,7 +11,7 @@
 
 # scaffold
 
-My offen use project templates.
+A project template I sometimes use.
 
 <br>
 <br>
