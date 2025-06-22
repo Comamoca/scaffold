@@ -14,7 +14,6 @@ jobs:
     
     steps:
       - name: Update Nix Flakes
-        uses: Comamoca/flakes-updater@1.0.0
+        uses: Comamoca/flakes-updater@2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-            
