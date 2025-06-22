@@ -1,0 +1,47 @@
+name: Update Nix Flakes
+
+on:
+  schedule:
+    - cron: '0 17 * * *'  # Run daily at 2 AM JST (17:00 UTC)
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  update-flakes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update all flake.nix files
+        run: |
+          # Find all directories containing flake.nix and update them
+          find . -name "flake.nix" -type f | while read -r flake_file; do
+            flake_dir=$(dirname "$flake_file")
+            echo "Updating flake in: $flake_dir"
+            (cd "$flake_dir" && nix flake update)
+          done
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: ':package: Update flake.lock files'
+          title: 'chore: Update Nix flake dependencies'
+          body: |
+            Automated update of all Nix flake dependencies.
+            
+            All directories containing flake.nix files have been updated.
+            
+            🤖 Generated with GitHub Actions
+          branch: update-flakes
+          base: main
+          delete-branch: true
