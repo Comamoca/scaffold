@@ -88,7 +88,7 @@
           devenv.shells.default = {
             packages = with pkgs; [
 	      nil
-	      beam28Packages.rebar
+	      beam28Packages.rebar3
 	    ];
 
             languages = {
