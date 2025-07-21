@@ -17,6 +17,7 @@
       systems,
       nixpkgs,
       flake-parts,
+      nix-gleam,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
