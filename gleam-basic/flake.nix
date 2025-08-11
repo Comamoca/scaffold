@@ -8,7 +8,7 @@
     systems.url = "github:nix-systems/default";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
     devenv.url = "github:cachix/devenv";
-    nix-gleam.url = "github:arnarg/nix-gleam";
+    gleam-overlay.url = "github:Comamoca/gleam-overlay";
   };
 
   outputs =
@@ -17,7 +17,6 @@
       systems,
       nixpkgs,
       flake-parts,
-      nix-gleam,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -54,7 +53,7 @@
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [
-              nix-gleam.overlays.default
+              inputs.gleam-overlay.overlays.default
             ];
             config = { };
           };
@@ -94,6 +93,7 @@
             languages = {
               gleam = {
                 enable = true;
+                package = pkgs.gleam.bin.latest;
               };
 	      erlang = {
                 enable = true;
