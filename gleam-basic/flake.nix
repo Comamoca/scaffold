@@ -9,6 +9,10 @@
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
     devenv.url = "github:cachix/devenv";
     gleam-overlay.url = "github:Comamoca/gleam-overlay";
+    gleam2nix.url = "git+https://git.isincredibly.gay/srxl/gleam2nix";
+    gleam2nix.inputs.nixpkgs.follows = "nixpkgs";
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -37,9 +41,14 @@
         let
           stdenv = pkgs.stdenv;
 	  
-          # hello = pkgs.buildGleamApplication {
-          #   src = ./.;
-          # };
+          app = pkgs.buildGleamApplication {
+            pname = "hello";
+            version = "1.0.0";
+            src = pkgs.lib.cleanSource ./.;
+            gleamNix = import ./gleam.nix { inherit (pkgs) lib; };
+            gleam = pkgs.gleam.bin.latest;
+          };
+
 
           git-secrets' = pkgs.writeShellApplication {
             name = "git-secrets";
@@ -54,6 +63,8 @@
             inherit system;
             overlays = [
               inputs.gleam-overlay.overlays.default
+              inputs.gleam2nix.overlays.default
+	      inputs.fenix.overlays.default
             ];
             config = { };
           };
@@ -88,6 +99,7 @@
             packages = with pkgs; [
 	      nil
 	      beam28Packages.rebar3
+              gleam2nix
 	    ];
 
             languages = {
@@ -109,7 +121,7 @@
             enterShell = '''';
           };
 
-	  # packages.default = hello;
+	  # packages.default = app;
         };
     };
 }
