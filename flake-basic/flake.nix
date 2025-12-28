@@ -89,14 +89,12 @@
             settings = {
               hooks = {
                 treefmt.enable = true;
-                ripsecrets.enable = true;
-                git-secrets = {
+                gitleaks = {
                   enable = true;
-                  name = "git-secrets";
-                  entry = "${git-secrets'}/bin/git-secrets";
+                  entry = "${pkgs.gitleaks}/bin/gitleaks protect --staged";
                   language = "system";
-                  types = [ "text" ];
                 };
+                gitlint.enable = true;
               };
             };
           };
