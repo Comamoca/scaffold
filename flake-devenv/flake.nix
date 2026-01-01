@@ -65,14 +65,6 @@
               install -D $src/bin/hello $out/bin/hello
             '';
           };
-
-          git-secrets' = pkgs.writeShellApplication {
-            name = "git-secrets";
-            runtimeInputs = [ pkgs.git-secrets ];
-            text = ''
-              git secrets --scan
-            '';
-          };
         in
         {
           # When execute `nix fmt`, formatting your code.
@@ -91,12 +83,10 @@
               hooks = {
                 treefmt.enable = true;
                 ripsecrets.enable = true;
-                git-secrets = {
+                gitleaks = {
                   enable = true;
-                  name = "git-secrets";
-                  entry = "${git-secrets'}/bin/git-secrets";
+                  entry = "${pkgs.gitleaks}/bin/gitleaks protect --staged";
                   language = "system";
-                  types = [ "text" ];
                 };
               };
             };

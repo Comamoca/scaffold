@@ -64,14 +64,6 @@
               install -D $src/bin/hello $out/bin/hello
             '';
           };
-
-          git-secrets' = pkgs.writeShellApplication {
-            name = "git-secrets";
-            runtimeInputs = [ pkgs.git-secrets ];
-            text = ''
-              git secrets --scan
-            '';
-          };
         in
         {
           # When execute `nix fmt`, formatting your code.

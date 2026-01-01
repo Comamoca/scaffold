@@ -48,15 +48,6 @@
             gleamNix = import ./gleam.nix { inherit (pkgs) lib; };
             gleam = pkgs.gleam.bin.latest;
           };
-
-
-          git-secrets' = pkgs.writeShellApplication {
-            name = "git-secrets";
-            runtimeInputs = [ pkgs.git-secrets ];
-            text = ''
-              git secrets --scan
-            '';
-          };
         in
         {
           _module.args.pkgs = import inputs.nixpkgs {
