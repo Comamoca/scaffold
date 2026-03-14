@@ -7,7 +7,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
-    devenv.url = "github:cachix/devenv";
   };
 
   outputs =
@@ -22,7 +21,6 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         inputs.git-hooks-nix.flakeModule
-        inputs.devenv.flakeModule
       ];
       systems = import inputs.systems;
 
@@ -36,24 +34,7 @@
         let
           stdenv = pkgs.stdenv;
 
-          # To make executable binary.
-          executable = stdenv.mkDerivation {
-            # Set executable binary name.
-            pname = "executable";
-            version = "0.0.1";
-            # Specify source path. You must specify the file added with `git add`.
-            src = ./.;
-
-            # Write build commands. e.g. make, gcc, etc...
-            buildPhase = '''';
-
-            # Write build commands. e.g. install file $out/bin/file
-            installPhase = '''';
-          };
-
-          # When execute `nix run`, print "Hello World!".
-          # And execute `nix build` to make execute at `./result/bin/hello`.
-          hello = stdenv.mkDerivation {
+          app = stdenv.mkDerivation {
             pname = "hello";
             version = "0.1.0";
             src = pkgs.writeShellScriptBin "hello" ''
@@ -81,33 +62,27 @@
             settings = {
               hooks = {
                 treefmt.enable = true;
+                ripsecrets.enable = true;
                 gitleaks = {
                   enable = true;
                   entry = "${pkgs.gitleaks}/bin/gitleaks protect --staged";
                   language = "system";
                 };
-                gitlint.enable = true;
               };
             };
           };
 
-          # When execute `nix develop`, you go in shell installed nil.
-          devenv.shells.default = {
-            packages = [ pkgs.nil ];
+          packages.default = app;
 
-            # Specify languages like this.
-            # There is a limit to the number of languages for which the version attribute can be specified.
-            # languages = {
-            #   php = {
-            #     enable = true;
-            #     version = "8.4";
-            #   };
-            # };
+          devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.process-compose."default-service".services.outputs.devShell
+            ];
 
-            enterShell = '''';
+            packages = with pkgs; [
+              nixd
+            ];
           };
-
-          packages.default = hello;
         };
     };
 }
