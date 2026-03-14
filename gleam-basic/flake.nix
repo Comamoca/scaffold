@@ -13,6 +13,8 @@
     gleam2nix.inputs.nixpkgs.follows = "nixpkgs";
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
+    process-compose-flake.url = "github:Platonic-Systems/process-compose-flake";
+    services-flake.url = "github:juspay/services-flake";
   };
 
   outputs =
@@ -28,6 +30,7 @@
         inputs.treefmt-nix.flakeModule
         inputs.git-hooks-nix.flakeModule
         inputs.devenv.flakeModule
+        inputs.process-compose-flake.flakeModule
       ];
       systems = import inputs.systems;
 
@@ -48,6 +51,16 @@
             gleamNix = import ./gleam.nix { inherit (pkgs) lib; };
             gleam = pkgs.gleam.bin.latest;
           };
+
+          erlangPackages = with pkgs.beamMinimal28Packages; [
+            erlang
+            rebar3
+          ];
+
+          gleamPackages = with pkgs; [
+            gleam2nix
+            gleam.bin.latest
+          ];
         in
         {
           _module.args.pkgs = import inputs.nixpkgs {
@@ -84,33 +97,31 @@
             };
           };
 
-          devenv.shells.default = {
-            packages = with pkgs; [
-	      nil
-	      beam28Packages.rebar3
-              gleam2nix
-	    ];
+          process-compose."default-service" = {
+            imports = [
+              inputs.services-flake.processComposeModules.default
+            ];
 
-            languages = {
-              gleam = {
-                enable = true;
-                package = pkgs.gleam.bin.latest;
-              };
-	      erlang = {
-                enable = true;
-	      };
-	      # javascript = {
+            services = {
+              # redis."r1" = {
               #   enable = true;
-	      # };
-	      # deno = {
-              #   enable = true;
-	      # };
+              # };
             };
-
-            enterShell = '''';
           };
 
-	  # packages.default = app;
+          devShells.default = pkgs.mkShell {
+            # To start the service, please run: nix run .#default-service
+            inputsFrom = [
+              config.process-compose."default-service".services.outputs.devShell
+            ];
+
+            packages = with pkgs; [
+	      nixd 
+            ] ++ erlangPackages
+              ++ gleamPackages ;
+          };
+
+	  packages.default = app;
         };
     };
 }

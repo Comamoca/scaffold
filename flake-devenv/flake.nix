@@ -16,7 +16,6 @@
       systems,
       nixpkgs,
       flake-parts,
-      devenv,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -82,14 +81,30 @@
             settings = {
               hooks = {
                 treefmt.enable = true;
-                ripsecrets.enable = true;
                 gitleaks = {
                   enable = true;
                   entry = "${pkgs.gitleaks}/bin/gitleaks protect --staged";
                   language = "system";
                 };
+                gitlint.enable = true;
               };
             };
+          };
+
+          # When execute `nix develop`, you go in shell installed nil.
+          devenv.shells.default = {
+            packages = [ pkgs.nil ];
+
+            # Specify languages like this.
+            # There is a limit to the number of languages for which the version attribute can be specified.
+            # languages = {
+            #   php = {
+            #     enable = true;
+            #     version = "8.4";
+            #   };
+            # };
+
+            enterShell = '''';
           };
 
           packages.default = hello;
