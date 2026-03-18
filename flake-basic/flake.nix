@@ -7,6 +7,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    process-compose-flake.url = "github:Platonic-Systems/process-compose-flake";
+    services-flake.url = "github:juspay/services-flake";
   };
 
   outputs =
@@ -21,6 +23,7 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         inputs.git-hooks-nix.flakeModule
+        inputs.process-compose-flake.flakeModule
       ];
       systems = import inputs.systems;
 
@@ -70,6 +73,13 @@
                 };
               };
             };
+          };
+
+          # To start the service, please run: nix run .#default-service
+          process-compose."default-service" = { 
+            imports = [
+              inputs.services-flake.processComposeModules.default
+            ];
           };
 
           packages.default = app;
