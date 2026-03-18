@@ -55,6 +55,8 @@
           erlangPackages = with pkgs.beamMinimal28Packages; [
             erlang
             rebar3
+
+            # elixir_1_19
           ];
 
           gleamPackages = with pkgs; [
