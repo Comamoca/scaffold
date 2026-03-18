@@ -39,4 +39,8 @@
     path = ./gleam-basic;
     description = "A basic flake to with Gleam language";
   };
+  moonbit = {
+    path = ./moonbit;
+    description = "A basic flake to with moonbit language";
+  };
 }
