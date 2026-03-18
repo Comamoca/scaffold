@@ -76,7 +76,7 @@
           };
 
           # To start the service, please run: nix run .#default-service
-          process-compose."default-service" = { 
+          process-compose."default-service" = {
             imports = [
               inputs.services-flake.processComposeModules.default
             ];
