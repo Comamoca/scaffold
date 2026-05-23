@@ -693,9 +693,9 @@ gonzales-pe@^4.3.0:
     minimist "^1.2.5"
 
 hono@^4.4.12:
-  version "4.4.12"
-  resolved "https://registry.npmjs.org/hono/-/hono-4.4.12.tgz"
-  integrity sha512-Lx4Vwbws0IqFfXIVYychxUW0A4EE+7dn/jsjVeM34OXSA2Xs45MkDDP14Mzznp7LlDemUNHQG2uv2N5jQld0hA==
+  version "4.12.22"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-4.12.22.tgz#bf5ca1473cc9211fd9cb107ebcbc23862bdbf974"
+  integrity sha512-7fvVPbB92zNRsQke+uiRGwtTuef0tB2Dg4hWxYfFNvkQhIltWoyi0ONReM5LWA+jJWS3nfT5lTq+qbsIpX0IQw==
 
 honox@^0.1.23:
   version "0.1.55"
