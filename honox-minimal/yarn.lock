@@ -224,9 +224,9 @@
   integrity sha512-GwtvgtXxnWsucXvbQXkRgqksiH2Qed37H9xHZocE5sA3N8O8O8/8FA3uclQXxXVzc9XBZuEOMK7+r02FmSpHtw==
 
 "@hono/vite-cloudflare-pages@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.npmjs.org/@hono/vite-cloudflare-pages/-/vite-cloudflare-pages-0.4.2.tgz"
-  integrity sha512-fvSmWNtL7rMTa6tfj0dJNu0UStp8veb2r1BfutoKtJ6GaTzO1sR5ElQw9jIYo46oTBcx8+i/9+NzyGR56awtrQ==
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@hono/vite-cloudflare-pages/-/vite-cloudflare-pages-0.4.3.tgz#515976b3be3564bb88a8923e0d3968941e1ed996"
+  integrity sha512-MrMsH/EGHQI3KG5CAI7GMrwyTgiXbpY+uo3uBBdOUONHLsn8Z+Wt4y+A4T0eMEzvo6xc+uFh+graZMbT1RjU3A==
 
 "@hono/vite-dev-server@^0.25.1":
   version "0.25.3"
