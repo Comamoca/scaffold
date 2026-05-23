@@ -1,7 +1,7 @@
 {
   "name": "honox-minimal",
   "type": "module",
-  "dependencies": { "hono": "^4.4.12", "honox": "^0.1.23", "vite": "^5.3.3" },
+  "dependencies": { "hono": "^4.4.12", "honox": "^0.1.23", "vite": "^8.0.0" },
   "devDependencies": {
     "@hono/vite-cloudflare-pages": "^0.4.2",
     "@types/bun": "latest"
