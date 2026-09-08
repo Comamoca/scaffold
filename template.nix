@@ -31,10 +31,6 @@
     path = ./odin-hello;
     description = "Minimal Odin project.";
   };
-  cl-nix = {
-    path = ./cl-nix;
-    description = "Common Lisp with Nix";
-  };
   gleam-basic = {
     path = ./gleam-basic;
     description = "A basic flake to with Gleam language";

@@ -2,7 +2,7 @@
   description = "A basic flake to with flake-parts";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
@@ -83,7 +83,7 @@
             };
           };
 
-          process-compose."default-service" = { 
+          process-compose."default-service" = {
             imports = [
               inputs.services-flake.processComposeModules.default
             ];

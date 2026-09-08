@@ -626,6 +626,21 @@
         "type": "github"
       }
     },
+    "mk-shell-bin": {
+      "locked": {
+        "lastModified": 1677004959,
+        "narHash": "sha256-/uEkr1UkJrh11vD02aqufCxtbF5YnhRTIKlx5kyvf+I=",
+        "owner": "rrbutani",
+        "repo": "nix-mk-shell-bin",
+        "rev": "ff5d8bd4d68a347be5042e2f16caee391cd75887",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rrbutani",
+        "repo": "nix-mk-shell-bin",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "flake-compat": [
@@ -695,6 +710,26 @@
       "original": {
         "owner": "stoeffel",
         "repo": "nix-test-runner",
+        "type": "github"
+      }
+    },
+    "nix2container": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788707171,
+        "narHash": "sha256-tFdriZAZPYTA7TfdaatGjXwLk3XkixmsOmrabLr+LZk=",
+        "owner": "nlewo",
+        "repo": "nix2container",
+        "rev": "9e300aabb7000efea84460504cc7587b523c654c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nlewo",
+        "repo": "nix2container",
         "type": "github"
       }
     },
@@ -935,6 +970,8 @@
         "devenv": "devenv",
         "flake-parts": "flake-parts_4",
         "git-hooks-nix": "git-hooks-nix",
+        "mk-shell-bin": "mk-shell-bin",
+        "nix2container": "nix2container",
         "nixpkgs": "nixpkgs_6",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix_2"

@@ -6,7 +6,6 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
-    haskell-flake.url = "github:srid/haskell-flake";
     purescript-overlay = {
       url = "github:thomashoneyman/purescript-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,13 +20,12 @@
       treefmt-nix,
       flake-parts,
       purescript-overlay,
-      haskell-flake
       # flake-root,
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ treefmt-nix.flakeModule 
-      haskell-flake.flakeModule
-      # flake-root.flakeModule 
+      imports = [
+        treefmt-nix.flakeModule
+        # flake-root.flakeModule
       ];
       systems = import inputs.systems;
 
@@ -46,11 +44,12 @@
             version = "0.0.1";
             src = ./.;
 
-            buildPhase = '''';
+            buildPhase = "";
 
-            installPhase = '''';
+            installPhase = "";
           };
-        in {
+        in
+        {
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [
@@ -58,7 +57,7 @@
             ];
             config = { };
           };
-        
+
           treefmt = {
             projectRootFile = "flake.nix";
             programs = {

@@ -2,7 +2,7 @@
   description = "A basic flake to with Gleam language";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
@@ -15,6 +15,9 @@
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     process-compose-flake.url = "github:Platonic-Systems/process-compose-flake";
     services-flake.url = "github:juspay/services-flake";
+    nix2container.url = "github:nlewo/nix2container";
+    nix2container.inputs.nixpkgs.follows = "nixpkgs";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
   };
 
   outputs =
@@ -43,7 +46,7 @@
         }:
         let
           stdenv = pkgs.stdenv;
-	  
+
           app = pkgs.buildGleamApplication {
             pname = "hello";
             version = "1.0.0";
@@ -59,6 +62,12 @@
             # elixir_1_19
           ];
 
+          # javaScriptPackages = with pkgs; [
+          #   nodejs_24
+          #   bun
+          #   deno
+          # ];
+
           gleamPackages = with pkgs; [
             gleam2nix
             gleam.bin.latest
@@ -70,7 +79,7 @@
             overlays = [
               inputs.gleam-overlay.overlays.default
               inputs.gleam2nix.overlays.default
-	      inputs.fenix.overlays.default
+              inputs.fenix.overlays.default
             ];
             config = { };
           };
@@ -117,13 +126,17 @@
               config.process-compose."default-service".services.outputs.devShell
             ];
 
-            packages = with pkgs; [
-	      nixd 
-            ] ++ erlangPackages
-              ++ gleamPackages ;
+            packages =
+              with pkgs;
+              [
+                nixd
+              ]
+              ++ erlangPackages
+              # ++ javaScriptPackages
+              ++ gleamPackages;
           };
 
-	  packages.default = app;
+          packages.default = app;
         };
     };
 }

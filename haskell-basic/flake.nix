@@ -1,5 +1,5 @@
 {
-  description = "A basic flake to with flake-parts";
+  description = "A basic flake for Haskell project";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -38,42 +38,13 @@
         }:
         let
           stdenv = pkgs.stdenv;
-
-          # To make executable binary.
-          executable = stdenv.mkDerivation {
-            # Set executable binary name.
-            pname = "executable";
-            version = "0.0.1";
-            # Specify source path. You must specify the file added with `git add`.
-            src = ./.;
-
-            # Write build commands. e.g. make, gcc, etc...
-            buildPhase = "";
-
-            # Write build commands. e.g. install file $out/bin/file
-            installPhase = "";
-          };
-
-          # When execute `nix run`, print "Hello World!".
-          # And execute `nix build` to make execute at `./result/bin/hello`.
-          hello = stdenv.mkDerivation {
-            pname = "hello";
-            version = "0.1.0";
-            src = pkgs.writeShellScriptBin "hello" ''
-              echo Hello World!
-            '';
-
-            buildCommand = ''
-              install -D $src/bin/hello $out/bin/hello
-            '';
-          };
         in
         {
-          # When execute `nix fmt`, formatting your code.
           treefmt = {
             projectRootFile = "flake.nix";
             programs = {
               nixfmt.enable = true;
+              stylish-haskell.enable = true;
             };
 
             settings.formatter = { };
@@ -94,25 +65,23 @@
             };
           };
 
-          # When execute `nix develop`, you go in shell installed nil.
           devenv.shells.default = {
             devenv.root = builtins.toString ./.;
 
-            packages = [ pkgs.nil ];
+            packages = with pkgs; [
+              nil
+            ];
 
-            # Specify languages like this.
-            # There is a limit to the number of languages for which the version attribute can be specified.
-            # languages = {
-            #   php = {
-            #     enable = true;
-            #     version = "8.4";
-            #   };
-            # };
+            languages = {
+              haskell = {
+                enable = true;
+                cabal.enable = true;
+                lsp.enable = true;
+              };
+            };
 
             enterShell = "";
           };
-
-          packages.default = hello;
         };
     };
 }
