@@ -1,11 +1,11 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@hono/hono@^4.4.13": "4.13.0"
+    "jsr:@hono/hono@^4.4.13": "4.13.14"
   },
   "jsr": {
-    "@hono/hono@4.13.0": {
-      "integrity": "01944c68d43ec22e31b236923335ff8415bae8f32f76290d3a8387b9640c96af"
+    "@hono/hono@4.13.14": {
+      "integrity": "eb72ba9062b84caed0d6160804645f8d5c984ec47fd301df3f995ab8c5135123"
     }
   },
   "workspace": {
