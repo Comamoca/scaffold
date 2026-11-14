@@ -6,6 +6,12 @@
   "automergeType": "pr",
   "platformAutomerge": false,
   "automergeSchedule": ["at any time"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ],
   "lockFileMaintenance": {
     "enabled": true
   },
