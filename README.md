@@ -8,7 +8,6 @@
 
 <img src="https://emoji2svg.deno.dev/api/🦊" alt="eyecatch" height="100">
 
-
 # scaffold
 
 A project template I sometimes use.
@@ -23,12 +22,12 @@ A project template I sometimes use.
 </div>
 
 > [!NOTE]
-> Some templates have been moved to the [Comamoca/starter](https://github.com/Comamoca/starter) repository.
+> Some templates have been moved to the
+> [Comamoca/starter](https://github.com/Comamoca/starter) repository.
 
 ## 🚀 How to use
 
 ### 🦊 Use scaffox
-
 
 Please install [scaffox](https://github.com/comamoca/scaffox)
 
@@ -47,15 +46,16 @@ scaffox https://github.com/comamoca/scaffold
 If you have [Nix](https://nixos.org/), run below.
 
 `{template_name}` is a directory name.(e.g. `flake-basic`)
+
 ```sh
-nix flake init -t github:Comamoca/scaffold#{template_name} 
+nix flake init -t github:Comamoca/scaffold#{template_name}
 ```
 
 Get `flake-basic` template.
-```sh
-nix flake init -t github:Comamoca/scaffold#flake-basic 
-```
 
+```sh
+nix flake init -t github:Comamoca/scaffold#flake-basic
+```
 
 ## 📝 Todo
 
@@ -64,7 +64,7 @@ Nothing...
 ## 📜 License
 
 > [!CAUTION]
-> **If a license is specified in the included source code, that
-> license will take precedence.**
+> **If a license is specified in the included source code, that license will
+> take precedence.**
 
 CC0
